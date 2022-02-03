@@ -6,11 +6,10 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            FizzBuzz fizzBuzz = new FizzBuzz();
-            for (int i = 1; i < 100; i++)
-            {
-                Console.WriteLine(fizzBuzz.VerificarNumeros(i));
-            }
+            FizzBuzzClass fizzBuzz = new FizzBuzzClass();
+            
+                Console.WriteLine(fizzBuzz.VerificarNumeros(-3));
+            
         }
     }
 }
