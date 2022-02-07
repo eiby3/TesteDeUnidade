@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsTestFizzBuzz", "MsTestFiz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuebraLinhas", "QuebraLinhas\QuebraLinhas.csproj", "{1969DFFE-AE6B-49AF-891D-304E25F26177}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsTestQuebraLinhas", "MsTestQuebraLinhas\MsTestQuebraLinhas.csproj", "{8BA01AB0-1F77-487E-B9B4-446F3233C07B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1969DFFE-AE6B-49AF-891D-304E25F26177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1969DFFE-AE6B-49AF-891D-304E25F26177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1969DFFE-AE6B-49AF-891D-304E25F26177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA01AB0-1F77-487E-B9B4-446F3233C07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA01AB0-1F77-487E-B9B4-446F3233C07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA01AB0-1F77-487E-B9B4-446F3233C07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA01AB0-1F77-487E-B9B4-446F3233C07B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

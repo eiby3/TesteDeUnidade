@@ -8,13 +8,99 @@ namespace QuebraLinhas
 {
     public class QuebraLinhaClass
     {
-        public void QuebradorDeLinhar(string frase)
+        private List<string[]> listaComAsPalavrasArray = new List<string[]>();
+        private int _numeroMaxColunas { get; set; }
+        private int quantasLetrasForamRemovidas { get; set; }
+        public QuebraLinhaClass()
         {
-            string[] quebrarlinha = new string[20];
-            for (int i = 0; i < quebrarlinha.Length; i++)
+            _numeroMaxColunas = 20;
+        }
+        public QuebraLinhaClass(int numeroMaxColunas)
+        {
+            _numeroMaxColunas = numeroMaxColunas;
+        }
+        private void SeparadorDeLetras(string frase)
+        {
+            string[] fraseseparada = frase.Split();
+            VerificarTamanhoPalavras(fraseseparada);
+            string palavras;
+            string[] letras;
+            string espaco = " ";
+
+            for (int i = 0; i < fraseseparada.Length; i++)
             {
-                quebrarlinha[i] = frase;
+                palavras = fraseseparada[i];
+                letras = palavras.ToCharArray().Select(c => c.ToString()).ToArray();
+                listaComAsPalavrasArray.Add(letras);
+                listaComAsPalavrasArray.Add(espaco.ToCharArray().Select(c => c.ToString()).ToArray());
             }
+        }
+        private string RemovedorUltimaLetra(string linha)
+        {
+            int espacoASCII = 32;
+            int quantasLetrasForamRemovidas = 0;
+            while (linha[linha.Length - 1] != espacoASCII)
+            {
+                linha = linha.Remove(linha.Length - 1);
+                quantasLetrasForamRemovidas++;
+            }
+            return linha;
+        }
+        public string QuebradorDeLinhas(string frase)
+        {
+            VerificarTamanhoColuna(_numeroMaxColunas);
+            SeparadorDeLetras(frase);
+            string linha = null;
+            int contador = 0;            
+            foreach (var arrays in listaComAsPalavrasArray)
+            {
+                for (int i = 0; i < arrays.Length; i++)
+                {
+                    if (contador == _numeroMaxColunas && arrays[i] != " ")
+                    {
+                        linha = RemovedorUltimaLetra(linha);
+                        i = quantasLetrasForamRemovidas;
+
+                    }
+                    if (contador == _numeroMaxColunas)
+                    {
+                        linha += "\n\r";
+                        contador = 0;
+                    }
+                    linha += arrays[i];
+                    contador++;
+                }
+            }
+            return RemoverUltimoEspaco(linha);
+        }
+
+        private void VerificarTamanhoColuna(int numeroColunas)
+        {
+            if (numeroColunas == 0)
+            {
+                throw new TamanhoColunaMaxIgualZeroException(nameof(numeroColunas));
+            }
+            else if (numeroColunas < 0)
+            {
+                throw new TamanhoColunaMaxMenorQueZeroException(nameof(numeroColunas));
+            }
+        }
+
+        private void VerificarTamanhoPalavras(string[] palavras)
+        {
+            for (int i = 0; i < palavras.Length; i++)
+            {
+                if (palavras[i].Length > _numeroMaxColunas)
+                {
+                    throw new PalavraMaiorQueEsperadoException("Tamanho da palavra ultrapassou o numero maximo de colunas");
+                }
+            }
+        }
+        private string RemoverUltimoEspaco(string linha)
+        {
+            linha = linha.Remove(linha.Length - 1);
+
+            return linha;
         }
     }
 }
