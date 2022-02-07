@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace QuebraLinhas
 {
-    public class PalavraMaiorQueEsperadoException : Exception
+    public class ColunasMenorQueTextoException : Exception
     {
-        public PalavraMaiorQueEsperadoException(string mensagem) : base(mensagem)
+        public ColunasMenorQueTextoException(string mensagem) : base(mensagem)
         {
 
         }

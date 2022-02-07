@@ -11,6 +11,7 @@ namespace QuebraLinhas
         private List<string[]> listaComAsPalavrasArray = new List<string[]>();
         private int _numeroMaxColunas { get; set; }
         private int quantasLetrasForamRemovidas { get; set; }
+
         public QuebraLinhaClass()
         {
             _numeroMaxColunas = 20;
@@ -26,7 +27,6 @@ namespace QuebraLinhas
             string palavras;
             string[] letras;
             string espaco = " ";
-
             for (int i = 0; i < fraseseparada.Length; i++)
             {
                 palavras = fraseseparada[i];
@@ -50,8 +50,10 @@ namespace QuebraLinhas
         {
             VerificarTamanhoColuna(_numeroMaxColunas);
             SeparadorDeLetras(frase);
+
+
             string linha = null;
-            int contador = 0;            
+            int contador = 0;
             foreach (var arrays in listaComAsPalavrasArray)
             {
                 for (int i = 0; i < arrays.Length; i++)
@@ -71,8 +73,11 @@ namespace QuebraLinhas
                     contador++;
                 }
             }
-            return RemoverUltimoEspaco(linha);
+            linha = RemoverUltimoEspaco(linha);
+            return linha;
         }
+
+
 
         private void VerificarTamanhoColuna(int numeroColunas)
         {
@@ -88,13 +93,11 @@ namespace QuebraLinhas
 
         private void VerificarTamanhoPalavras(string[] palavras)
         {
-            for (int i = 0; i < palavras.Length; i++)
+            if (palavras.Length > _numeroMaxColunas)
             {
-                if (palavras[i].Length > _numeroMaxColunas)
-                {
-                    throw new PalavraMaiorQueEsperadoException("Tamanho da palavra ultrapassou o numero maximo de colunas");
-                }
+                throw new ColunasMenorQueTextoException("Tamanho da frase ultrapassou o numero maximo de colunas");
             }
+
         }
         private string RemoverUltimoEspaco(string linha)
         {

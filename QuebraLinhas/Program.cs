@@ -8,8 +8,8 @@ namespace QuebraLinhas
     {
         static void Main(string[] args)
         {
-            QuebraLinhaClass quebraLinha = new QuebraLinhaClass(40);
-            string frase = "Hoje é um dia especial para mim.";
+            QuebraLinhaClass quebraLinha = new QuebraLinhaClass(2);
+            string frase = "Um pequeno jabuti xereta viu dez cegonhas felizes.";
             string fraseObtida = quebraLinha.QuebradorDeLinhas(frase);
             Console.WriteLine(fraseObtida);
         }

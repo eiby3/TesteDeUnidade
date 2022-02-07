@@ -5,7 +5,7 @@ using System;
 namespace MsTestFizzBuzz
 {
     [TestClass]
-    public class UnitTest1
+    public class FizzBuzzTeste
     {
         [TestMethod]
         public void RetornaBuzzMultiploDeCinco()

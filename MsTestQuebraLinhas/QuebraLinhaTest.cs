@@ -5,7 +5,7 @@ using System;
 namespace MsTestQuebraLinhas
 {
     [TestClass]
-    public class UnitTest1
+    public class QuebraLinhaTest
     {
         [TestMethod]
         public void RetornaFraseQuebrandoLinhaComMaximo20Colunas()
@@ -22,8 +22,8 @@ namespace MsTestQuebraLinhas
         [TestMethod]
         public void RetornaFraseQuebrandoLinhaComMaximo15Colunas()
         {
-            string frase = "Hoje é um dia especial para mim.";
-            string retornoEsperado = "Hoje é um dia \n\respecial para \n\rmim.";
+            string frase = "Um pequeno jabuti xereta viu dez cegonhas felizes.";
+            string retornoEsperado = "Um pequeno \n\rjabuti xereta \n\rviu dez \n\rcegonhas \n\rfelizes.";
 
 
             QuebraLinhaClass quebraLinhas = new QuebraLinhaClass(15);
@@ -35,7 +35,7 @@ namespace MsTestQuebraLinhas
         [ExpectedException(typeof(TamanhoColunaMaxIgualZeroException))]        
         public void RetornarExceptionComLinhaDeMaximoZeroColunas()
         {
-            string frase = "Hoje é um dia especial para mim.";            
+            string frase = "Um pequeno jabuti xereta viu dez cegonhas felizes.";            
             int numeroMaxColunas = 0;
 
             QuebraLinhaClass quebraLinhas = new QuebraLinhaClass(numeroMaxColunas);
@@ -45,7 +45,7 @@ namespace MsTestQuebraLinhas
         [ExpectedException(typeof(TamanhoColunaMaxMenorQueZeroException))]        
         public void RetornarExceptionComLinhaDeMaximoMenorQueZeroColunas()
         {
-            string frase = "Hoje é um dia especial para mim.";
+            string frase = "Um pequeno jabuti xereta viu dez cegonhas felizes.";
             int numeroMaxColunas = -1;
 
             QuebraLinhaClass quebraLinhas = new QuebraLinhaClass(numeroMaxColunas);
@@ -53,16 +53,15 @@ namespace MsTestQuebraLinhas
         }
 
         [TestMethod]
-        public void RetornarProprioTextoTextoCasoMaximoDeColunasForMaiorQueTexto()
+        [ExpectedException(typeof(ColunasMenorQueTextoException))]
+        public void RetornarExceptionCasoMaximoDeColunasForMenorQueTexto()
         {
-            string frase = "Hoje é um dia especial para mim.";
-            int numeroMaxColunas = 40;
-            string retornoEsperado = "Hoje é um dia especial para mim.";
+            string frase = "Um pequeno jabuti xereta viu dez cegonhas felizes.";
+            int numeroMaxColunas = 2;            
 
             QuebraLinhaClass quebraLinhas = new QuebraLinhaClass(numeroMaxColunas);
             string retornoObtido = quebraLinhas.QuebradorDeLinhas(frase);
 
-            Assert.AreEqual(retornoEsperado, retornoObtido);
         }
     }
 }
